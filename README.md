@@ -97,8 +97,11 @@ Prometheus discovered itself under `kubernetes-pods`
 ### Deploying Grafana ###
 
 You can deploy [grafana](http://grafana.org/) by creating its deployment and service by
-running `kubectl create -f grafana-deployment.yaml` and `kubectl create -f grafana-service.yaml`.
+running `kubectl create -f grafana-deployment.yaml` 
+and `kubectl create -f grafana-service.yaml`.
+
 You can then view it by running `kubectl get services --namespace=monitoring grafana -o yaml`
+
 Feel free to explore via the kubectl command line and/or the Dashboard.
 
 Username is `admin` and password is also `admin`.
