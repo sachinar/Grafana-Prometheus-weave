@@ -71,7 +71,7 @@ Now that we have Prometheus deployed, we actually want to get to the
 UI.  To do this, we will expose it using a
 [Kubernetes Service](http://kubernetes.io/docs/user-guide/services/).
 
-In [prometheus-service.yaml](./prometheus-service.yaml), there are a
+In prometheus-service.yaml, there are a
 few things to note:
 
 * The label selector searches for pods that have been labeled with
@@ -96,7 +96,7 @@ Prometheus discovered itself under `kubernetes-pods`
 
 ### Deploying Grafana ###
 
-You can deploy [grafana](http://grafana.org/) by creating its deployment and service by
+You can deploy grafana by creating its deployment and service by
 running `kubectl create -f grafana-deployment.yaml` 
 and `kubectl create -f grafana-service.yaml`.
 
