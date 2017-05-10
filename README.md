@@ -64,9 +64,6 @@ actually allow Prometheus to autodiscover and scrape itself.
 
 Deploy the deployment by running `kubectl create -f prometheus-deployment.yaml`.  
 You can see this by running `kubectl get deployments --namespace=monitoring`.
-`NAME         DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-grafana      1         1         1            1           4h
-prometheus   1         1         1            1           4h`
 
 ### Prometheus Service ###
 
