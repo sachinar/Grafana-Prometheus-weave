@@ -13,19 +13,16 @@ and you should see something similar to:
 
 ```
 NAME          STATUS    AGE
-default       Active    6d
-kube-system   Active    6d
-monitoring    Active    3d
+default       Active    1h
+kube-system   Active    1h
+monitoring    Active    1h
 ```
 
 ## Deploying Prometheus and Grafana ##
 
-Let's step through deploying Prometheus.  The configuration we will
-use is based on a
-[blog post by CoreOS](https://coreos.com/blog/monitoring-kubernetes-with-prometheus.html)
-and the
-[example configuration](https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus-kubernetes.yml)
-included with Prometheus.
+Let's step through deploying Prometheus.  
+
+
 
 ### Prometheus Configuration ###
 Prometheus will get its configuration from a
@@ -34,7 +31,7 @@ This allows us to update the configuration separate from the image.
 Note: there is a large debate about whether this is a "good" approach
 or not, but for demo purposes this is fine.
 
-Look at [prometheus-config.yaml](./prometheus-config.yaml). The
+Look at prometheus-config.yaml. The
 relevant part is in `data/prometheus.yml`.  This is just a [Prometheus
 configuration](https://prometheus.io/docs/operating/configuration/)
 inlined into the Kubernetes manifest. Note that we are using the
@@ -43,9 +40,10 @@ in-cluster
 to access the Kubernetes API.
 
 To deploy this to the cluster run `kubectl create -f
-prometheus-config.yaml`.  You can view this by running `kubectl get
-configmap --namespace=monitoring prometheus-config -o yaml`. You can
-also see this in the Kubernetes Dashboard.
+prometheus-config.yaml`.  Y
+ou can view this by running 
+`kubectl get configmap --namespace=monitoring prometheus-config -o yaml`. 
+You can also see this in the Kubernetes Dashboard.
 
 
 ### Prometheus Pod ###
