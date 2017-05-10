@@ -28,8 +28,7 @@ Let's step through deploying Prometheus.
 Prometheus will get its configuration from a
 [Kubernetes ConfigMap](http://kubernetes.io/docs/user-guide/configmap/).
 This allows us to update the configuration separate from the image.
-Note: there is a large debate about whether this is a "good" approach
-or not, but for demo purposes this is fine.
+
 
 Look at prometheus-config.yaml. The
 relevant part is in `data/prometheus.yml`.  This is just a [Prometheus
