@@ -132,7 +132,7 @@ Running it is also super easy.
 
 ### Step 1: Deploy ###
 
-$ kubectl apply -f 'https://scope.weave.works/launch/k8s/weavescope.yaml'
+$ kubectl apply -f weavescope.yaml
 
 ### Step 2: Connect ###
 
