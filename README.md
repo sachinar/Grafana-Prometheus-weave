@@ -33,22 +33,21 @@ This allows us to update the configuration separate from the image.
 Look at prometheus-config.yaml. The
 relevant part is in `data/prometheus.yml`.  This is just a [Prometheus
 configuration](https://prometheus.io/docs/operating/configuration/)
-inlined into the Kubernetes manifest. Note that we are using the
-in-cluster
-[Kubernetes service account](http://kubernetes.io/docs/user-guide/service-accounts/)
-to access the Kubernetes API.
+inlined into the Kubernetes manifest. Note that we are using the in-cluster
+[Kubernetes service account](http://kubernetes.io/docs/user-guide/service-accounts/) to access the Kubernetes API.
 
-To deploy this to the cluster run `kubectl create -f
-prometheus-config.yaml`.  Y
-ou can view this by running 
+To deploy this to the cluster run `kubectl create -f prometheus-config.yaml`.  
+You can view this by running 
+
 `kubectl get configmap --namespace=monitoring prometheus-config -o yaml`. 
+
 You can also see this in the Kubernetes Dashboard.
 
 
 ### Prometheus Pod ###
 We will use a single Prometheus
-[pod](http://kubernetes.io/docs/user-guide/pods/) for this demo.  Take
-a look at [prometheus-deployment.yaml](./prometheus-deployment.yaml).
+[pod](http://kubernetes.io/docs/user-guide/pods/) for this demo. 
+Take a look at [prometheus-deployment.yaml](./prometheus-deployment.yaml).
 This is a [Kubernetes Deployment](http://kubernetes.io/docs/user-guide/deployments/) that describes the image to use for
 the pod, resources, etc.  Note:
 
@@ -63,9 +62,8 @@ actually allow Prometheus to autodiscover and scrape itself.
   this is fine, but we'd do something more persistent for other use
   cases.
 
-Deploy the deployment by running `kubectl create -f
-prometheus-deployment.yaml`.  You can see this by running `kubectl get
-deployments --namespace=monitoring`.
+Deploy the deployment by running `kubectl create -f prometheus-deployment.yaml`.  
+You can see this by running `kubectl get deployments --namespace=monitoring`.
 
 ### Prometheus Service ###
 
@@ -83,15 +81,12 @@ few things to note:
 port on each node in our cluster. You can query the API to get this
 port.
 
-Create the service by running `kubectl create -f
-prometheus-service.yaml`.  You can then view it by running `kubectl
-get services --namespace=monitoring prometheus -o yaml`.
+Create the service by running `kubectl create -f prometheus-service.yaml`.  
+You can then view it by running `kubectl get services --namespace=monitoring prometheus -o yaml`.
 
 One thing to note is that you will see something like `nodePort:
 30827` in the output.  We could access the service on that port on any
-node in the cluster.  Minikube comes with a helper to do just that,
-just run `minikube service --namespace=monitoring prometheus` and it
-will open a browser window accessing the service.
+node in the cluster.  
 
 From the Prometheus console, you can explore the metrics is it
 collecting and do some basic graphing.  You can also view the
@@ -102,12 +97,11 @@ Prometheus discovered itself under `kubernetes-pods`
 ### Deploying Grafana ###
 
 You can deploy [grafana](http://grafana.org/) by creating its deployment and service by
-running `kubectl create -f grafana-deployment.yaml` and `kubectl
-create -f grafana-service.yaml`. Feel free to explore via the kubectl
-command line and/or the Dashboard.
+running `kubectl create -f grafana-deployment.yaml` and `kubectl create -f grafana-service.yaml`.
+You can then view it by running `kubectl get services --namespace=monitoring grafana -o yaml`
+Feel free to explore via the kubectl command line and/or the Dashboard.
 
-Go to  grafana by running `minikube service --namespace=monitoring
-grafana`.  Username is `admin` and password is also `admin`.
+Username is `admin` and password is also `admin`.
 
 Let's add Prometheus as a datasource.
 * Click on the icon in the upper
