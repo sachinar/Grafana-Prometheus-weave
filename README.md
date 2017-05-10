@@ -144,9 +144,9 @@ $ kubectl apply -f \
 ### Step 2: Connect ###
 
 kubectl port-forward \
-     $(kubectl get pod \
-     --selector=weave-scope-component=app -o \
-     jsonpath={.items..metadata.name}) 4040
+                $(kubectl get pod \
+                --selector=weave-scope-component=app -o \
+                jsonpath={.items..metadata.name}) 4040
 
 ### Step 3: Open ###
 
