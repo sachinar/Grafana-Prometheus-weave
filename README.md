@@ -64,6 +64,9 @@ actually allow Prometheus to autodiscover and scrape itself.
 
 Deploy the deployment by running `kubectl create -f prometheus-deployment.yaml`.  
 You can see this by running `kubectl get deployments --namespace=monitoring`.
+`NAME         DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+grafana      1         1         1            1           4h
+prometheus   1         1         1            1           4h`
 
 ### Prometheus Service ###
 
@@ -84,6 +87,29 @@ port.
 Create the service by running `kubectl create -f prometheus-service.yaml`.  
 You can then view it by running `kubectl get services --namespace=monitoring prometheus -o yaml`.
 
+`apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: 2017-05-10T04:45:50Z
+  name: prometheus
+  namespace: monitoring
+  resourceVersion: "790"
+  selfLink: /api/v1/namespaces/monitoring/services/prometheus
+  uid: 8ad84ca1-353b-11e7-8abc-42010a800109
+spec:
+  clusterIP: 10.3.248.118
+  ports:
+  - nodePort: 31057
+    port: 9090
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    name: prometheus
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}`
+
 One thing to note is that you will see something like `nodePort:
 30827` in the output.  We could access the service on that port on any
 node in the cluster.  
@@ -101,6 +127,29 @@ running `kubectl create -f grafana-deployment.yaml`
 and `kubectl create -f grafana-service.yaml`.
 
 You can then view it by running `kubectl get services --namespace=monitoring grafana -o yaml`
+`apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: 2017-05-10T04:46:04Z
+  name: grafana
+  namespace: monitoring
+  resourceVersion: "818"
+  selfLink: /api/v1/namespaces/monitoring/services/grafana
+  uid: 92dd25e0-353b-11e7-8abc-42010a800109
+spec:
+  clusterIP: 10.3.240.119
+  ports:
+  - nodePort: 32307
+    port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    name: grafana
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}`
+
 
 Feel free to explore via the kubectl command line and/or the Dashboard.
 
