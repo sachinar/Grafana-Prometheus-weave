@@ -131,3 +131,23 @@ panel.  Under metrics, select "prometheus" as the datasource. For the
 query, use `sum(container_memory_usage_bytes) by (kubernetes_pod_name)`.  Click
 save. This graphs the memory used per pod.
 
+### Weave Scope ###
+
+Weave Scope is an open source tool that helps you monitor and visualize your cluster. It is currently very beta, but I think it has a lot of potential!
+Running it is also super easy.
+
+Step 1: Deploy
+
+$ kubectl apply -f \
+    'https://scope.weave.works/launch/k8s/weavescope.yaml'
+
+Step 2: Connect
+
+$ kubectl port-forward \
+    $(kubectl get pod \
+    --selector=weave-scope-component=app -o \
+    jsonpath={.items..metadata.name}) 4040
+
+Step 3: Open
+
+http://localhost:4040/
