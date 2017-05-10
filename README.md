@@ -136,15 +136,11 @@ Running it is also super easy.
 
 ### Step 1: Deploy ###
 
-$ kubectl apply -f \
-    'https://scope.weave.works/launch/k8s/weavescope.yaml'
+$ kubectl apply -f 'https://scope.weave.works/launch/k8s/weavescope.yaml'
 
 ### Step 2: Connect ###
 
-kubectl port-forward \
-                $(kubectl get pod \
-                --selector=weave-scope-component=app -o \
-                jsonpath={.items..metadata.name}) 4040
+$ kubectl port-forward $(kubectl get pod --selector=weave-scope-component=app -o jsonpath={.items..metadata.name}) 4040
 
 ### Step 3: Open ###
 
